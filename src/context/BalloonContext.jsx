@@ -6,7 +6,7 @@ const BalloonContextProvider = ({children}) => {
 
     const [balloonList, setBalloonList] = useState([]);
     const [balloon, setBalloon] = useState([]);
-    const [num, setNum] = useState(0);
+    const [num, setNum] = useState('');
 
     useEffect(() => {
         let arr = [];
@@ -43,6 +43,7 @@ const BalloonContextProvider = ({children}) => {
                 setBalloon([...balloon, cur_balloon]);
             }
         }
+        setNum('')
         updateBalloonList();
     }
     
@@ -63,7 +64,7 @@ const BalloonContextProvider = ({children}) => {
     }
 
   return (
-    <BalloonContext.Provider value={{ balloonList, balloon, handleChange, moveRight, moveLeft }}>{children}</BalloonContext.Provider>
+    <BalloonContext.Provider value={{ balloonList, balloon, handleChange, moveRight, moveLeft, num }}>{children}</BalloonContext.Provider>
   )
 }
 

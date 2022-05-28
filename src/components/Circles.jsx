@@ -13,8 +13,8 @@ const BoxWrapper = styled.div`
     // border : 1px solid black;
     width : 30%;
 
-    div{
-        border : 1px solid black;
+    >div{
+        border-top : 2px solid black;
         display : grid;
         grid-template-columns : auto auto;
         justify-content : space-around;
@@ -38,17 +38,44 @@ const CircleWrapper = styled.div`
 
 const InputWrapper = styled.div`
     // border : 1px solid blue;
-    padding : 2%;
     display: flex;
     flex-direction : column;
     height : 200px;
-    position : relative;
-    top : 100px;
+    width : 15%;
+
+    input{
+        height : 30px;
+        margin-bottom : 20%;
+        border : none;
+        border-bottom : 1px solid black;
+        padding : 5%;
+    }
+
+    button{
+        border : 3px outset #1FCFEA;
+        margin : auto;
+        width : 50%;
+        padding : 5%;
+        background-color : white;
+        border-radius : 5%;
+    }
+
+    button:hover{
+        border : hidden;
+        background-color : #1FCFEA;
+        margin : auto;
+        width : 50%;
+        padding : 5%;
+        cursor : pointer;
+        // font-size : 16px;
+        font-weight : bold;
+        color : white;
+    }
 `;
 
 const Circles = () => {
 
-    const { balloon, balloonList, handleChange, moveRight, moveLeft } = useContext(BalloonContext);
+    const { balloon, balloonList, handleChange, moveRight, moveLeft, num } = useContext(BalloonContext);
 
   return (
     <BodyWrapper>
@@ -76,7 +103,8 @@ const Circles = () => {
             }
         </div>
         <InputWrapper>
-            <input type="number" placeholder="Enter the number..." onChange={handleChange}/>
+            <h1>Input</h1>
+            <input type="number" placeholder="Enter the number..." value={num} onChange={handleChange}/>
             <button onClick={moveLeft}>SHOOT</button>
         </InputWrapper>
     </BodyWrapper>
