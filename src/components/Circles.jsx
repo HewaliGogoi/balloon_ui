@@ -45,7 +45,7 @@ const Circles = () => {
             {
                 balloon.map((item, id) => {
                     return (
-                        <CircleWrapper key={id} mycolor={item.mycolor} onClick={moveLeft}>{item.org_pos}</CircleWrapper>
+                        <CircleWrapper style={{cursor:"pointer"}} key={id} mycolor={item.mycolor} onClick={() => moveRight(item)}>{item.org_pos}</CircleWrapper>
                         // console.log(item)
                     )
                 })
@@ -63,7 +63,7 @@ const Circles = () => {
         </div>
         <InputWrapper>
             <input type="number" placeholder="Enter the number..." onChange={handleChange}/>
-            <button onClick={moveRight}>SHOOT</button>
+            <button onClick={moveLeft}>SHOOT</button>
         </InputWrapper>
     </BodyWrapper>
   )

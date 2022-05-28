@@ -11,9 +11,9 @@ const BalloonContextProvider = ({children}) => {
     useEffect(() => {
         let arr = [];
         for(let i = 1; i <= 5; i++){
-            let r = Math.floor(Math.random() * 255);
-            let g = Math.floor(Math.random() * 255);
-            let b = Math.floor(Math.random() * 255);
+            let r = Math.floor(Math.random() * 255-i-10);
+            let g = Math.floor(Math.random() * 255-i-25);
+            let b = Math.floor(Math.random() * 255-i-40);
             let color = `rgb(${r}, ${g}, ${b})`;
             let data = {
                 org_pos : i,
@@ -24,7 +24,7 @@ const BalloonContextProvider = ({children}) => {
         }
         setBalloonList([...arr]);
         // console.log(arr)
-        console.log(balloonList)
+        // console.log(balloonList)
     }, []);
 
     const handleChange = (e) => {
@@ -32,32 +32,35 @@ const BalloonContextProvider = ({children}) => {
         // console.log(num);
     }
 
-    const moveRight = () => {
+    const moveLeft = () => {
         for(let i = 0; i < balloonList.length; i++){
-            if(num == balloonList[i].cur_pos){
-                var cur_balloon = balloonList[i]
+            let cur_balloon = balloonList[i]
+            if(num == cur_balloon.cur_pos){
                 cur_balloon.cur_pos = 0;
                 setBalloon([...balloon, cur_balloon]);
             }
         }
-        updateBalloonList(cur_balloon);
-        // console.log(balloon)
+        updateBalloonList();
     }
-
-    const updateBalloonList = (cur_balloon) => {
+    
+    const updateBalloonList = () => {
         let arr = balloonList.filter((item) => item.cur_pos > 0);
         arr.sort((a, b) => a.org_pos - b.org_pos);
         arr.map((item, id) => item.cur_pos = id + 1);
-        // console.log(arr)
         setBalloonList([...arr]);
     }
 
-    const moveLeft = () => {
-
+    const moveRight = (item) => {
+        setBalloon([...balloon.filter((e) => e.org_pos != item.org_pos)]);
+        console.log(balloon);
+        let arr = [...balloonList, item];
+        arr.sort((a, b) => a.org_pos - b.org_pos);
+        arr.map((item, id) => item.cur_pos = id + 1);
+        setBalloonList([...arr]);
     }
 
   return (
-    <BalloonContext.Provider value={{ balloonList, setBalloonList, balloon, setBalloon, handleChange, moveRight, moveLeft }}>{children}</BalloonContext.Provider>
+    <BalloonContext.Provider value={{ balloonList, balloon, handleChange, moveRight, moveLeft }}>{children}</BalloonContext.Provider>
   )
 }
 
