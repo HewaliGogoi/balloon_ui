@@ -11,21 +11,24 @@ const BalloonContextProvider = ({children}) => {
     useEffect(() => {
         let arr = [];
         for(let i = 1; i <= 5; i++){
-            let r = Math.floor(Math.random() * 255-i-10);
-            let g = Math.floor(Math.random() * 255-i-25);
-            let b = Math.floor(Math.random() * 255-i-40);
-            let color = `rgb(${r}, ${g}, ${b})`;
+            let r = Math.floor(Math.random() * (255-i-10));
+            let g = Math.floor(Math.random() * (255-i-25));
+            let b = Math.floor(Math.random() * (255-i-40));
+            let color = `rgba(${r}, ${g}, ${b}, .7)`;
+            let bor_col = `rgb(${r}, ${g}, ${b})`;
+            // console.log(bor_col)
             let data = {
                 org_pos : i,
                 cur_pos : i,
-                mycolor : color
+                mycolor : color,
+                my_bor_col : bor_col
             }
             arr.push(data);
         }
         setBalloonList([...arr]);
         // console.log(arr)
-        // console.log(balloonList)
     }, []);
+    // console.log("hi", balloonList)
 
     const handleChange = (e) => {
         setNum(e.target.value);
