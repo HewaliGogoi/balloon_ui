@@ -1,4 +1,11 @@
 <h1>Balloon Shoot</h1>
+<p>A small react project to shoot the balloons of random colors and bring them back to its original position.</p>
+<h3>Tech stack used</h3>
+<ul>
+  <li>ReactJs</li>
+  <li>Context-API</li>
+  <li>Styled-components</li>
+</ul>
 
 <img src = "https://i.ibb.co/pKbZwDZ/Balloon2.png" /> <br />
 
